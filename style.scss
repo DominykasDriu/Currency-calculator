@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+// Resets
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  color: rgb(75, 75, 75);
+}
+// Remove number input counter
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+// Vars
+$bg: #376db9;
+$currency: white;
+$hover: #f3f3f3;
+$input: white; 
+
+// Bad practice I know
+body {
+  background-color: $bg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+// MAIN STRUCTURE
+main {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  width: 330px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  .from {
+    margin-bottom: 20px;
+  }
+}
+// From/To label
+.label {
+  color: grey;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+// INPUT CSS
+.input-wrapper {
+  display: flex;
+  border-radius: 10px 10px 10px 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  .selection-wrapper {
+    background-color: $currency;
+    height: 35px;
+    border-radius: 10px 0 0 0;
+    .selection {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: 70px;
+      padding: 0 10px;
+      cursor: pointer;
+      i {
+        width: 30%;
+        padding: 0 5px;
+      }
+      p {
+        width: 70%;
+      }
+    }
+    .selection-options {
+      display: none;
+      position: relative;
+      background-color: $currency;
+      border-radius: 0 0 10px 10px;
+      overflow: hidden;
+      div {
+        text-align: center;
+        padding: 5px 0;
+        cursor: pointer;
+      }
+      div:hover {
+        background: $hover;
+      }
+    }
+    .active {
+      display: block;
+      animation: open 0.5s;
+    }
+  }
+  input {
+    border: 0;
+    outline: none;
+    font-size: 16px;
+    width: 100%;
+    background-color: $input;
+    border-radius: 0 10px 10px 0;
+    padding-left: 15px;
+  }
+  .output {
+    background-color: $input;
+    padding-left: 15px;
+    border-radius: 0 10px 10px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+// Animation of currency options
+@keyframes open {
+  from {
+    height: 0;
+  }
+  to {
+    height: 261px;
+  }
+}
