@@ -22,17 +22,19 @@ const currencies = ['USD','EUR','JPY','GBP','AUD','CAD','CHF','CNH','RUB'];
     item.addEventListener('click', (e) => {
       selectFrom.firstElementChild.textContent = e.target.innerHTML;
       fromOptions.classList.toggle('active');
+      init();
     })
   });
   [...selectTo.nextElementSibling.children].forEach(item => {
     item.addEventListener('click', (e) => {
       selectTo.firstElementChild.textContent = e.target.innerHTML;
       toOptions.classList.toggle('active');
+      init();
     })
   });
 })()
 
-// MAIN CONVERSION FUNCTION
+// API CONVERSION
 const APIcall = (from, to, amount) => {
   fetch(`https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}`)
     .then(res => res.json())
@@ -41,17 +43,20 @@ const APIcall = (from, to, amount) => {
     })
     .catch(error => console.log(error))
 }
-
-// LISTENERS
-// Input listener
-input.addEventListener('keyup', () => {
+// API CALL INITIALIZATION
+function init() {
   let from = selectFrom.firstElementChild.textContent;
   let to = selectTo.firstElementChild.textContent;
   let amount = input.value;
-  // Call function if value is typed in
+  // Call for api if value is typed in
   amount ? APIcall(from,to,amount) : output.innerHTML = '';
   // If any currency selection is still open close it
   [fromOptions,toOptions].forEach(e=>e.classList.remove('active'));
+}
+// LISTENERS
+// Input listener
+input.addEventListener('keyup', () => {
+  init();
 });
 
 // Listeners to show currency options
